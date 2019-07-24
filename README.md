@@ -12,7 +12,7 @@ library(Plothtests)
 ```
 Then you can perform a hyphotesis test using a summary statistic. 
 
-To test one populational variance
+To test one populational variance (Chi-squared test)
 
 ```markdown
 plot_chi_test(alpha = 0.05,alternative = "two.sided",
@@ -22,6 +22,38 @@ plot_chi_test(alpha = 0.05,alternative = "two.sided",
               color = 3)
 ```
 ![chi test](images/rplot_chi_test_01.png)
+
+To test the difference of two variances (F-test)
+
+```markdown
+plot_F_test(alpha = 0.05, alternative = "two.sided",
+            df1 = 10, df2 = 10,
+            v1 = 1.5, v2 = 2.5,
+            ratio = 1,
+            annotations = TRUE,
+            color = 3)
+```
+![chi test](images/rplot_F_test_01.png)
+
+
+To test the difference of two means (T-test)
+
+```markdown
+plot_T_test(alpha = 0.05, alternative = "two.sided",
+            var.equal = "equal",
+            n1 = 10, m1 = 2.92, v1 = 1.5,
+            n2 = 20, m2 = 4.20, v2 = 1.7,             
+            delta0 = 0,
+            annotations = TRUE,
+            color = 3)
+```
+![chi test](images/rplot_T_test_01.png)
+
+
+
+
+
+
 
 
 
