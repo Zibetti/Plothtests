@@ -2,7 +2,7 @@
 # Plothtests <img src='images/logo.png' align="right" height="138.5" /></a>
 
 
-## Plothtests
+## Plot hyphotesis tests - R Package
 
 This R package was made to help in demonstrate the concepts of hyphotesis test, the functions will perfom and plot a hyphotesis test, highlithing the test statistic, critical area and limits value, and the p-value.
 
