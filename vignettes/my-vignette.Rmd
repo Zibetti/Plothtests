@@ -1,0 +1,106 @@
+---
+title: "Plottests vignette"
+output: rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = FALSE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Plottests)
+```
+
+"If you think without writing, you only think you're thinking." - Leslie Lamport
+
+# Ploting and performing a Hyphotesis test on the difference of two means using summary statistics (t-test)
+
+To perform and plot the hyphotesis  on the difference of two means just fill the function parameters with the observed statistics and details about your alternative hyphotesis as well with the significance level (alpha).
+
+
+* <span style="color:blue">alpha</span> - significance level for the critical limits; it must lie between zero and one
+* <span style="color:blue">alternative</span> - a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
+* <span style="color:blue">var.equal</span> - a char variable indicating whether to treat the two variances as being equal or notequal. If "equal" then the pooled variance is used to estimate the variance otherwise ("notequal") the Welch (or Satterthwaite) approximation to the degrees of freedom is used
+* <span style="color:blue">n1</span> - a single number representing the sample size of sample 1
+* <span style="color:blue">m1</span> - a single number representing the sample mean of sample 1
+* <span style="color:blue">v1</span> - a single number representing the sample variance for sample 1
+* <span style="color:blue">n2</span> - a single number representing the sample size of sample 2
+* <span style="color:blue">m2</span> - a single number representing the sample mean of sample 2
+* <span style="color:blue">v2</span> - a single number representing the sample variance for sample 2
+* <span style="color:blue">delta0</span> - a number indicating the true value of the difference in means of the two sample test.
+* <span style="color:blue">annotations</span> - logical, show annotations in plot figure, TRUE ou FALSE (default = TRUE)
+* <span style="color:blue">color</span> - integer, color theme for plot, from 1 to 7 so far (default = 3)
+
+```{r}
+plot_T_test(alpha = 0.05, alternative = "two.sided",
+         var.equal = "equal",
+         n1 = 10, m1 = 2.92, v1 = 1.5,
+         n2 = 20, m2 = 4.20, v2 = 1.7,             
+         delta0 = 0,
+         annotations = TRUE,
+         color = 3)
+```
+
+
+# Ploting and performing a Hyphotesis test on the difference of two variances using summary statistics (F-test)
+
+To perform and plot the hyphotesis  on the difference of two variances just fill the function parameters with the observed statistics and details about your alternative hyphotesis as well with the significance level (alpha).
+
+**Plot F Test to Compare Two Variance, the larger sample variance is always placed in the numerator.**
+
+* <span style="color:blue">alpha</span> - significance level for the critical limits; it must lie between zero and one
+* <span style="color:blue">alternative</span> - a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
+
+* <span style="color:blue">df1</span> - degrees of freedom for the sample 1 (**n1-1**)
+* <span style="color:blue">df2</span> - degrees of freedom for the sample 2 (**n2-1**)
+* <span style="color:blue">v1</span> - sample 1 variance
+* <span style="color:blue">v2</span> - sample 2 variance
+* <span style="color:blue">ratio</span> - the ratio of population variances under the null hypoyhesis (default = 1)
+* <span style="color:blue">m2</span> - a single number representing the sample mean of sample 2
+* <span style="color:blue">annotations</span> - logical, show annotations in plot figure, TRUE ou FALSE (default = TRUE)
+* <span style="color:blue">color</span> - integer, color theme for plot, from 1 to 7 so far (default = 3)
+
+```{r}
+plot_F_test(alpha = 0.05, alternative = "two.sided",
+             df1 = 10, df2 = 10,
+             v1 = 1.5, v2 = 2.5,
+             ratio = 1,
+             annotations = TRUE,
+             color = 3)
+```
+
+
+# Ploting and performing a Hyphotesis test on the difference of two variances using summary statistics (F-test)
+
+To perform and plot the hyphotesis  on the difference of two variances just fill the function parameters with the observed statistics and details about your alternative hyphotesis as well with the significance level (alpha).
+
+**Plot F Test to Compare Two Variance, the larger sample variance is always placed in the numerator.**
+
+* <span style="color:blue">alpha</span> - significance level for the critical limits; it must lie between zero and one
+* <span style="color:blue">alternative</span> - a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
+
+* <span style="color:blue">df1</span> - degrees of freedom for the sample 1 (**n1-1**)
+* <span style="color:blue">df2</span> - degrees of freedom for the sample 2 (**n2-1**)
+* <span style="color:blue">v1</span> - sample 1 variance
+* <span style="color:blue">v2</span> - sample 2 variance
+* <span style="color:blue">ratio</span> - the ratio of population variances under the null hypoyhesis (default = 1)
+* <span style="color:blue">m2</span> - a single number representing the sample mean of sample 2
+* <span style="color:blue">annotations</span> - logical, show annotations in plot figure, TRUE ou FALSE (default = TRUE)
+* <span style="color:blue">color</span> - integer, color theme for plot, from 1 to 7 so far (default = 3)
+
+```{r}
+plot_F_test(alpha = 0.05, alternative = "two.sided",
+             df1 = 10, df2 = 10,
+             v1 = 1.5, v2 = 2.5,
+             ratio = 1,
+             annotations = TRUE,
+             color = 3)
+```
+

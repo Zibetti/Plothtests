@@ -1,0 +1,17 @@
+Package: Plothtests
+Type: Package
+Title: Plot Parametric Hypothesis Tests (Z, T, Chi-squared and F)
+Version: 0.1.0
+Authors@R: person("Andre", "Wust Zibetti", email = "azibetti@gmail.com",
+           role = c("aut", "cre"))
+Description: Graphical representation of hyphotesis testing, null distribution, test statistic position, critical limits and p-value.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    igraph
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
