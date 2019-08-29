@@ -99,7 +99,7 @@ plot_chi_test = function(alpha = 0.05, alternative = "two.sided", df, va, vp, an
     points(ET, 0  , col = corET   , pch = 16 , cex=1.4)
 
     # plotar novamente a curva por cima
-    lines(x, DenCHI, type="l", xlab = "Valores de F", ylab = "Density", lwd = 3, col = corCurva)
+    lines(x, DenCHI, type="l", ylab = "Density", lwd = 3, col = corCurva)
 
     if(ET > qchisq(0.5, df) ){
       area_ET_cum = 1 - pchisq(ET, df)      # 1 - (area de 0 até estatistica amostral)
