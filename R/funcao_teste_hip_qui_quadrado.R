@@ -197,11 +197,11 @@ plot_chi_test = function(alpha = 0.05, alternative = "two.sided", df, va, vp, an
       # fim Valor de P arrow  ------------------------------------
 
       # Legendas
-      legenda <- list( bquote( "Test Statistic = F = "~ .(round(ET,2)) ) ,
+      legenda <- list( bquote( "Test Statistic =" ~ chi^2 == ~ .(round(ET,2)) ) ,
                        bquote( alpha == ~.(alpha) ),
                        bquote( "Critical limits" ~~ "[" ~ .(round(lic,2)) ~ ";" ~ .(round(lsc,2)) ~"]") )
 
-      mtext(side = 3, do.call(expression, legenda), line=-1:-3, adj=1, col=c(corET,corAreaLimCrit, "gray"))
+      mtext(side = 3, do.call(expression, legenda), line=-2:-4, adj=1, col=c(corET,corAreaLimCrit, "gray"))
     }
   }
 
@@ -295,11 +295,11 @@ plot_chi_test = function(alpha = 0.05, alternative = "two.sided", df, va, vp, an
       # fim Valor de P arrow  ------------------------------------
 
       # Legendas
-      legenda <- list( bquote( "Test Statistic = F = "~ .(round(ET,2)) ) ,
+      legenda <- list( bquote( "Test Statistic =" ~ chi^2 == ~ .(round(ET,2)) ) ,
                        bquote( alpha == ~.(alpha) ),
                        bquote( "Critical limits" ~~ "[ -Inf ;" ~ .(round(lsc,2)) ~"]") )
 
-      mtext(side = 3, do.call(expression, legenda), line=-1:-3, adj=1, col=c(corET,corAreaLimCrit, "gray"))
+      mtext(side = 3, do.call(expression, legenda), line=-2:-4, adj=1, col=c(corET,corAreaLimCrit, "gray"))
 
     }
   }
@@ -359,7 +359,7 @@ plot_chi_test = function(alpha = 0.05, alternative = "two.sided", df, va, vp, an
             angle   = c(-45))
 
     # plotar novamente a curva por cima
-    #lines(x, DenCHI, type="l", xlab = "Valores de F", ylab = "Density", lwd = 3, col = corCurva)
+    #lines(x, DenCHI, type="l", xlab = "Valores de Q", ylab = "Density", lwd = 3, col = corCurva)
 
     # Ticks do eixo X no plot
     Map(axis, side=1, at = round(c(ET, lic),2),
@@ -403,11 +403,11 @@ plot_chi_test = function(alpha = 0.05, alternative = "two.sided", df, va, vp, an
       # fim Valor de P arrow  ------------------------------------
 
       # Legendas
-      legenda <- list( bquote( "Test Statistic = F = "~ .(round(ET,2)) ) ,
+      legenda <- list( bquote( "Test Statistic =" ~ chi^2 == ~ .(round(ET,2)) ) ,
                        bquote( alpha == ~.(alpha) ),
                        bquote( "Critical limits" ~~ "[" ~ .(round(lic,2)) ~"; +Inf]") )
 
-      mtext(side = 3, do.call(expression, legenda), line=-1:-3, adj=1, col=c(corET,corAreaLimCrit, "gray"))
+      mtext(side = 3, do.call(expression, legenda), line=-2:-4, adj=1, col=c(corET,corAreaLimCrit, "gray"))
     }
   }
   PVAL = switch(alternative,
