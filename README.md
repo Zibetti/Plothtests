@@ -25,7 +25,7 @@ plot_chi_test(alpha = 0.05,alternative = "two.sided",
               annotations = TRUE,
               color = 3)
 ```
-![chi test](images/rplot_chi_test_01.png)
+![chi test](images/rplot_chi_test_01.png) 
 
 To test the difference of two variances (F-test)
 
