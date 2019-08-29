@@ -151,7 +151,7 @@ plot_chi_test = function(alpha = 0.05, alternative = "two.sided", df, va, vp, an
         lwd.ticks = 2)
 
     # plotar novamente a curva por cima
-    #lines(x, DenCHI, type="l", xlab = "Valores de F", ylab = "Density", lwd = 3, col = corCurva)
+    #lines(x, DenCHI, type="l", ylab = "Density", lwd = 3, col = corCurva)
 
     ## Anotações - escolha
     if(annotations == TRUE){
@@ -251,7 +251,7 @@ plot_chi_test = function(alpha = 0.05, alternative = "two.sided", df, va, vp, an
             angle   = c(-45))
 
     # plotar novamente a curva por cima
-    #lines(x, DenCHI, type="l", xlab = "Valores de F", ylab = "Density", lwd = 3, col = corCurva)
+    #lines(x, DenCHI, type="l",  ylab = "Density", lwd = 3, col = corCurva)
 
     # Ticks do eixo X no plot
     Map(axis, side=1, at = round(c(ET, lsc),2),
@@ -417,19 +417,3 @@ plot_chi_test = function(alpha = 0.05, alternative = "two.sided", df, va, vp, an
   return(list(test.statistic = ET, degree.freed = df, p.value = PVAL))
 }
 
-
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 10, va = 10, vp = 10, annotations = TRUE, color = 3)
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 10, va = 10.000002, vp = 10, annotations = TRUE, color = 3)
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 10, va = 9, vp = 10, annotations = TRUE, color = 3)
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 10, va = 9.6, vp = 10, annotations = TRUE, color = 3)
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 10, va = 9.7, vp = 10, annotations = TRUE, color = 3)
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 10, va = 9.8, vp = 10, annotations = TRUE, color = 3)
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 10, va = 9.9, vp = 10, annotations = TRUE, color = 3)
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 10, va = 9.99, vp = 10, annotations = TRUE, color = 3)
-
-# Montgomery
-plot_chi_test(alpha = 0.05, alternative = "two.sided", df = 19, va = 0.0153, vp = 0.01, annotations = TRUE, color = 3)
-plot_chi_test(alpha = 0.05, alternative = "greater"  , df = 19, va = 0.0153, vp = 0.01, annotations = TRUE, color = 3)
-
-#plot_chi_test(alpha = 0.05, alternative = "greater"  , df = 10, va = 10, vp = 10, annotations = TRUE, color = 3)
-#plot_chi_test(alpha = 0.05, alternative = "less"     , df = 10, va = 10, vp = 10, annotations = TRUE, color = 3)
