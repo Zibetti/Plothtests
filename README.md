@@ -2,9 +2,9 @@
 # Plothtests <img src='images/logo.png' align="right" height="138.5" /></a>
 
 
-## Plothtests
+## Plot hypothesis tests - R Package
 
-This R package was made to help in demonstrate the concepts of hyphotesis test, the functions will perfom and plot a hyphotesis test, highlithing the test statistic, critical area and limits value, and the p-value.
+This R package was made to help in demonstrate the concepts of hypothesis test, the functions will perfom and plot a hypothesis test, highlithing the test statistic, critical area and limits value, and the p-value.
 
 To install this package just:
 
@@ -14,7 +14,7 @@ library(devtools)
 install_github("Zibetti/Plothtests")
 library(Plothtests)
 ```
-Then you can perform a hyphotesis test using a summary statistic. 
+Then you can perform a hypothesis test using a summary statistic. 
 
 To test one populational variance (Chi-squared test)
 
