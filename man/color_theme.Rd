@@ -11,7 +11,7 @@ color_theme(paleta)
 }
 \value{
 list of colors
-} 
+}
 \description{
 Selection of theme color, 1 to 5 for now
 }
