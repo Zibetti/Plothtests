@@ -56,6 +56,8 @@ plotUD = function(a = 0, b = 4, prob = FALSE, i = 2, f = 4){
           xlim= c(a,b))
     points(x,px,pch=16)
   }
+  dt = data.frame(x = x, px = px)
+  return(knitr::kable(dt))
 }
 
 
@@ -156,6 +158,8 @@ plotBIN = function(n, p, hlt = FALSE, i = 2, f = 4){
           ylim = as.numeric(format(yl,digits = 6)))
     points(x,px,pch=16)
   }
+  dt = data.frame(x = x, px = px)
+  return(knitr::kable(dt))
 }
 
 
@@ -220,6 +224,8 @@ plotBINNEG = function(p, r, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
     points(x,px,pch=16)
     points(d,pd,col = "green",pch=16)
   }
+  dt = data.frame(x = x, px = px)
+  return(knitr::kable(dt))
 }
 
 
@@ -286,6 +292,8 @@ plotGEO = function(p, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
     #points(x,px,pch=16)
     points(d,pd,col = "green",pch=16)
   }
+  dt = data.frame(x = x, px = px)
+  return(knitr::kable(dt))
 }
 
 
@@ -357,6 +365,8 @@ plotHYPER = function(N,K,n, hlt = FALSE, i = 2, f = 4){
     #points(x,px,pch=16)
     points(d,pd,col = "green",pch=16)
   }
+  dt = data.frame(x = x, px = px)
+  return(knitr::kable(dt))
 }
 
 #' Plot Poisson Distribution
@@ -384,7 +394,7 @@ plotPOIS = function(lambda, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
        xaxt="n", # não plota eixo x
        yaxt="n", # não plota eixo y,
        xlab = "x",
-       xlim = c(-1,n),
+       xlim = c(-0.25,n),
        ylim = c(ymin,ymax),
        ylab = bquote( p[X](x) ))
   
@@ -420,4 +430,7 @@ plotPOIS = function(lambda, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
     #points(x,px,pch=16)
     points(d,pd,col = "green",pch=16)
   }
+  dt = data.frame(x = x, px = px)
+  return(knitr::kable(dt))
 }
+
