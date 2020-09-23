@@ -14,25 +14,30 @@
 #' @examples
 #' plotUD(a = 0, b = 4, prob = TRUE, i = 2, f = 4)
 
-plotUD = function(a = 0, b = 4, prob = FALSE, i = 2, f = 4){
+
+
+plotUD = function(a = 0, b = 4, prob = FALSE, i = 2, f = 4, out = TRUE){
   if(prob == TRUE){
     if (i < a | i > b) stop("'i' deve estar entre 'a' e 'b' ")
     if (f > b | f < i) stop("'f' deve estar entre 'a' e 'b' e menor que 'i' ")
   }
-  
+  corP             = "#14213d" # darkblue
+  corPhigh         = "#fca311" # orange
   x  = seq(a,b,1)
   px = rep(1/(b-a+1),b-a+1)
   plot(x, px, 
        type = "h", 
-       bty="n", 
-       xaxt="n", # não plota eixo x
-       yaxt="n", # não plota eixo y,
+       bty  = "n", 
+       xaxt = "n", # não plota eixo x
+       yaxt = "n", # não plota eixo y,
        xlab = "x",
-       ylab = bquote( p[X](x) ))
+       ylab = bquote( p[X](x) ),
+       col = corP)
   
-  points(x,px,pch=16)
+  points(x,px,pch=16, col = corP)
   axis(side=1,at=seq(a-1,b+1,1),lwd=3)
   axis(side=2,at=seq(0,1,0.05),lwd=3)
+  
   exp_value = (a+b)/2
   var_value = ((b-a+1)^2 - 1)/12
   # Legendas
@@ -46,18 +51,24 @@ plotUD = function(a = 0, b = 4, prob = FALSE, i = 2, f = 4){
     par(new=TRUE)
     d = i:f
     pd = rep(1/(b-a+1),f-i+1)
-    plot( d, pd, type="h", 
+    plot(d, pd, 
+          type="h", 
           bty="n", 
           xaxt="n", # não plota eixo x
           yaxt="n", # não plota eixo y,
           xlab = NA,
           ylab = NA,
-          col="green",
+          col=corPhigh,
+          lwd = 2,
           xlim= c(a,b))
     points(x,px,pch=16)
   }
+  if(out == TRUE){
   dt = data.frame(x = x, px = px)
   return(knitr::kable(dt))
+  }else{
+    return(invisible(NULL))
+  }
 }
 
 
@@ -112,7 +123,7 @@ plotcUD = function(a = 0, b = 4){
 #' @examples
 #' plotBIN(n = 50, p = 0.15, hlt = TRUE, i = 2, f = 4)
 
-plotBIN = function(n, p, hlt = FALSE, i = 2, f = 4){
+plotBIN = function(n, p, hlt = FALSE, i = 2, f = 4, out = TRUE){
   if(hlt == TRUE){
     if (n < 0 | p > 1) stop("'n' deve ser maior que 0, 'p' deve ser menor ou igual a 1 ")
     if (p < 0)         stop("'p' deve estar entre 0 e 1 ")
@@ -158,8 +169,12 @@ plotBIN = function(n, p, hlt = FALSE, i = 2, f = 4){
           ylim = as.numeric(format(yl,digits = 6)))
     points(x,px,pch=16)
   }
-  dt = data.frame(x = x, px = px)
-  return(knitr::kable(dt))
+  if(out == TRUE){
+    dt = data.frame(x = x, px = px)
+    return(knitr::kable(dt))
+  }else{
+    return(invisible(NULL))
+  }
 }
 
 
@@ -168,7 +183,7 @@ plotBIN = function(n, p, hlt = FALSE, i = 2, f = 4){
 #' 
 #' X represent the number of failures in a sequence of Bernoulli trials before a `r` success occurs.
 #'
-#' @param p 
+#' @param p probability of success in each trial. 0 < p <= 1.
 #' @param r target for number of successful trials. Must be strictly positive, need not be integer.
 #' @param n.plot number of observations for the plot, by default will be ploted 50 observations
 #' @param hlt logical (default is FALSE); if TRUE, probabilities P[i ≤ X ≤ f] are highlighted in green color in the plot 
@@ -179,16 +194,16 @@ plotBIN = function(n, p, hlt = FALSE, i = 2, f = 4){
 #' @examples
 #' plotBINNEG(p = 0.15, r = 3, n.plot = 50 , hlt = TRUE, i = 2, f = 4)
 
-plotBINNEG = function(p, r, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
+plotBINNEG = function(p, r, n.plot = 50 , hlt = FALSE, i = 2, f = 4, out = TRUE){
     if (p < 0 | p > 1) stop("'p' deve estar entre 0 e 1 ")
   n = n.plot
   x  = seq(0,n,1)
   px = dnbinom(x, size = r,prob = p)
   plot(x, px, 
        type = "h", 
-       bty="n", 
-       xaxt="n", # não plota eixo x
-       yaxt="n", # não plota eixo y,
+       bty  = "n", 
+       xaxt = "n", # não plota eixo x
+       yaxt = "n", # não plota eixo y,
        xlab = "x",
        ylab = bquote( p[X](x) ))
   
@@ -197,8 +212,8 @@ plotBINNEG = function(p, r, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
   #axis(side=2,at=seq(0,1,0.05),lwd=3)
   axis(side=2,lwd=3)
   # Calculo do valor esperado
-  exp_value = r/p
-  var_value = (r*(1-p)) / p^2
+  exp_value = (r*(1-p))/p
+  var_value = (r*(1-p))/(p^2)
   # Legendas
   legenda <- list( bquote( "E[X] =" ~ .(exp_value)) ,
                    bquote( "V(X) =" ~ .(var_value))
@@ -224,8 +239,12 @@ plotBINNEG = function(p, r, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
     points(x,px,pch=16)
     points(d,pd,col = "green",pch=16)
   }
-  dt = data.frame(x = x, px = px)
-  return(knitr::kable(dt))
+  if(out == TRUE){
+    dt = data.frame(x = x, px = px)
+    return(knitr::kable(dt))
+  }else{
+    return(invisible(NULL))
+  }
 }
 
 
@@ -244,7 +263,7 @@ plotBINNEG = function(p, r, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
 #' @examples
 #' plotGEO(p = 0.15, n.plot = 50 , hlt = FALSE, i = 2, f = 4)
 
-plotGEO = function(p, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
+plotGEO = function(p, n.plot = 50 , hlt = FALSE, i = 2, f = 4, out = TRUE){
   if (p <= 0 | p > 1) stop("'p' deve estar entre: 0 < p <= 1 ")
   n = n.plot
   x  = seq(0,n,1)
@@ -265,8 +284,8 @@ plotGEO = function(p, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
   #axis(side=2,at=seq(0,1,0.05),lwd=3)
   axis(side=2,lwd=3)
   # Calculo do valor esperado
-  exp_value = r/p
-  var_value = (r*(1-p)) / p^2
+  exp_value = (1-p)/p
+  var_value = (1-p) / p^2
   # Legendas
   legenda <- list( bquote( "E[X] =" ~ .(exp_value)) ,
                    bquote( "V(X) =" ~ .(var_value))
@@ -292,8 +311,12 @@ plotGEO = function(p, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
     #points(x,px,pch=16)
     points(d,pd,col = "green",pch=16)
   }
-  dt = data.frame(x = x, px = px)
-  return(knitr::kable(dt))
+  if(out == TRUE){
+    dt = data.frame(x = x, px = px)
+    return(knitr::kable(dt))
+  }else{
+    return(invisible(NULL))
+  }
 }
 
 
@@ -313,7 +336,7 @@ plotGEO = function(p, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
 #' @examples
 #' plotHYPER(N = 10,K = 5,n = 5, hlt = TRUE, i = 2, f = 4)
 
-plotHYPER = function(N,K,n, hlt = FALSE, i = 2, f = 4){
+plotHYPER = function(N,K,n, hlt = FALSE, i = 2, f = 4, out = TRUE){
   if (K >= N & n >= N) stop("'K < N' e 'n < N'")
   xmax = min(K,n)
   xmin = max(0,n+K-N)
@@ -365,8 +388,12 @@ plotHYPER = function(N,K,n, hlt = FALSE, i = 2, f = 4){
     #points(x,px,pch=16)
     points(d,pd,col = "green",pch=16)
   }
-  dt = data.frame(x = x, px = px)
-  return(knitr::kable(dt))
+  if(out == TRUE){
+    dt = data.frame(x = x, px = px)
+    return(knitr::kable(dt))
+  }else{
+    return(invisible(NULL))
+  }
 }
 
 #' Plot Poisson Distribution
@@ -381,7 +408,7 @@ plotHYPER = function(N,K,n, hlt = FALSE, i = 2, f = 4){
 #' @examples
 #' plotPOIS(lambda = 0.5, n.plot = 15, hlt = TRUE, i = 2, f = 4)
 
-plotPOIS = function(lambda, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
+plotPOIS = function(lambda, n.plot = 50 , hlt = FALSE, i = 2, f = 4, out = TRUE){
   if (lambda <= 0) stop("'lambda' deve ser maior que 0.")
   n = n.plot
   x  = seq(0,n,1)
@@ -429,8 +456,95 @@ plotPOIS = function(lambda, n.plot = 50 , hlt = FALSE, i = 2, f = 4){
           ylim = as.numeric(format(yl,digits = 6)))
     #points(x,px,pch=16)
     points(d,pd,col = "green",pch=16)
+    PX = sum(pd)
   }
-  dt = data.frame(x = x, px = px)
-  return(knitr::kable(dt))
+  if(out == TRUE & hlt == TRUE){
+    dt = data.frame(x = x, px = px)
+    return(list(knitr::kable(dt),PX))
+  }else if (out == TRUE & hlt == FALSE){
+    dt = data.frame(x = x, px = px)
+    return(knitr::kable(dt))
+  }else{
+    return(invisible(NULL))
+    # dt = data.frame(x = x, px = px)
+    # print(knitr::kable(dt))
+    # return(invisible(list(tabela = knitr::kable(dt),data = dt)))
+  }
 }
+
+
+#' Plot Empirical Distribution
+#'
+#' @param x random variable values
+#' @param px given probabilities for the random values x
+#' @param i highlight probability from i' initial value of distribution to 'f' final value of distribution 
+#' @param f highlight probability from i' initial value of distribution to 'f' final value of distribution
+#' @param output logical (default is FALSE); if TRUE a LaTeX formated table with probabilities is printed in console 
+#' @param hlt logical (default is FALSE); if TRUE, probabilities P[i ≤ X ≤ f] are highlighted in green color in the plot 
+#'
+#' @export
+#'
+#' @examples
+#' plotEMP(x = c(0, 1, 2, 3, 4, 5),px = c(0.15, 0.20, 0.25, 0.20, 0.15, 0.05))
+
+plotEMP = function(x, px , hlt = FALSE, i = 2, f = 4, output = FALSE){
+  if (!is.numeric(x))
+    stop("Argument 'x' must be numeric")
+  if (!is.numeric(px))
+    stop("Argument 'px' must be numeric")
+  ymax = 1.10*max(px)
+  ymin = -0.05*max(px)
+  plot(x, px, 
+       type = "h", 
+       bty="n", 
+       xaxt="n", # não plota eixo x
+       yaxt="n", # não plota eixo y,
+       xlab = "x",
+       ylab = bquote( p[X](x) ))
+  
+  points(x, px, pch=16)
+  axis(side=1,at=x,lwd.ticks = 1,lwd=3)
+  #axis(side=2,at=seq(0,1,0.2),lwd=3)
+  axis(side=2,lwd=3)
+  # Calculo do valor esperado
+  exp_value = sum(x*px)
+  var_value = sum((x-exp_value)^2*px)
+  des_value = sqrt(var_value)
+  # Legendas
+  legenda <- list( bquote( "E[X] =" ~ .(exp_value)) ,
+                   bquote( "V(X) =" ~ .(var_value)),
+                   bquote( "DP(X) =" ~ .(des_value))
+  )
+  
+  mtext(side = 3, do.call(expression, legenda), line=-1:-3, adj=1, col=c("gray", "gray"))
+  xl = par("usr")[1:2]
+  yl = par("usr")[3:4]
+  if(hlt == TRUE){
+    par(new=TRUE)
+    par(xaxs="i",yaxs="i")
+    d  = i:f
+    pd = px[(i+1):(f+1)]
+    plot( d, pd, type="h", 
+          bty="n", 
+          xaxt="n", # não plota eixo x
+          yaxt="n", # não plota eixo y,
+          xlab = NA,
+          ylab = NA,
+          col="green",
+          xlim = as.numeric(format(xl,digits = 6)),
+          ylim = as.numeric(format(yl,digits = 6)))
+    #points(x,px,pch=16)
+    points(d,pd,col = "green",pch=16)
+    PX = sum(pd)
+  }
+  if(hlt == TRUE){
+    dt = data.frame(x = x, px = px)
+    return(list(knitr::kable(dt),PX))
+  }else{
+    dt = data.frame(x = x, px = px)
+    print(knitr::kable(dt))
+    return(invisible(list(tabela = knitr::kable(dt),data = dt)))
+  }
+}
+
 
