@@ -10,6 +10,7 @@ To install this package just:
 
 ```markdown
 install.packages("devtools")
+install.packages("igraph")
 library(devtools)
 install_github("Zibetti/Plothtests")
 library(Plothtests)
