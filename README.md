@@ -15,6 +15,15 @@ library(devtools)
 install_github("Zibetti/Plothtests")
 library(Plothtests)
 ```
+or
+
+```markdown
+install.packages("devtools")
+install.packages("igraph")
+devtools::install_github("Zibetti/Plothtests")
+library(Plothtests)
+```
+
 Then you can perform a hypothesis test using a summary statistic. 
 
 To test one populational variance (Chi-squared test)
